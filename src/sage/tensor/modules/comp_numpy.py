@@ -53,5 +53,38 @@ class ComponentNumpy(SageObject):
 
     def __getlist__(self, ind_slice, no_format=True, format_type=None):
         pass
+
     def __mul__(self, other):
         return np.multiply(self, other)
+    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test    
+#test
