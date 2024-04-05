@@ -1708,8 +1708,20 @@ class AbelianGroup_subgroup(AbelianGroup_class):
         if not isinstance(gens, tuple):
             raise TypeError("gens (=%s) must be a tuple" % gens)
 
+        independent_gens = []
+        a = matrix([gens[0].exponents()])
+        curr_rank = 0
+        if a.rank() == 1:
+            curr_rank += 1
+            independent_gens.append(gens[0])
+        for row_no, row in enumerate(gens[1:], start=1):
+            a = a.insert_row(row_no, row.exponents())
+            if a.rank() == curr_rank + 1:
+                curr_rank += 1
+                independent_gens.append(row)
+
         self._ambient_group = ambient
-        H_gens = tuple(x for x in gens if x != ambient.one())  # clean entry
+        H_gens = tuple(x for x in independent_gens if x != ambient.one())  # clean entry
         self._gens = H_gens
 
         H = libgap(ambient).Subgroup(H_gens)
