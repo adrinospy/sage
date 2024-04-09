@@ -9,7 +9,7 @@ on:
       - edited
 jobs:
   label-changes:
-    if: vars.SMALL_THRESHOLD && vars.MODERATE_THRESHOLD && vars.LARGE_THRESHOLD
+    if: vars.SMALL_THRESHOLD && vars.MODERATE_THRESHOLD && vars.LARGE_THRESHOLD && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write

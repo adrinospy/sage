@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-echo 'set_labels_by_changes called with environment:'
+echo 'set_labels_by_changes.sh called with environment:'
 echo "BASE SHA: $PR_BASE_SHA" 
 echo "HEAD SHA: $PR_HEAD_SHA" 
-echo "LARGE THRESHOLD: $LARGE_THRESHOLD"
-echo "MODERATE THERESHOLD: $MODERATE_THRESHOLD"
 echo "SMALL THRESHOLD $SMALL_THRESHOLD"
+echo "MODERATE THERESHOLD: $MODERATE_THRESHOLD"
+echo "LARGE THRESHOLD: $LARGE_THRESHOLD"
 
 # get all the changes made and changed files
 CHANGES=$(git diff --ignore-all-space $PR_BASE_SHA $PR_HEAD_SHA)
