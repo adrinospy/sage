@@ -43,7 +43,7 @@ fi
 DELETE_LABELS=("${DELETE_LABELS[@]//${SIZE_LABEL}/}")
 
 # API for adding labels on the Pull Request 
-API_URL: "https://api.github.com/repos/$REPOSITORY/issues/$PR_NUMBER/labels"
+API_URL= "https://api.github.com/repos/$REPOSITORY/issues/$PR_NUMBER/labels"
 
 echo "Adding label: ${SIZE_LABEL[@]}"
 for LABEL in "${SIZE_LABEL[@]}"; do
