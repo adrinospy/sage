@@ -55,7 +55,7 @@ for item in "${CI_PATH[@]}"; do
 done
 
 if $ci_label; then
-    labels+=("CI Manager")
+    LABELS+=("CI Manager")
 fi
 
 echo "Adding label: ${LABELS[@]}"
