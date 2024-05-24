@@ -3,7 +3,7 @@
 echo 'set_labels_by_changes.sh called with environment:'
 echo "BASE SHA: $PR_BASE_SHA" 
 echo "HEAD SHA: $PR_HEAD_SHA" 
-echo "SMALL THRESHOLD $SMALL_THRESHOLD"
+echo "SMALL THRESHOLD: $SMALL_THRESHOLD"
 echo "MODERATE THERESHOLD: $MODERATE_THRESHOLD"
 echo "LARGE THRESHOLD: $LARGE_THRESHOLD"
 
@@ -31,22 +31,32 @@ LARGE="v: large"
 DELETE_LABELS=("$MINIMAL" "$SMALL" "$MODERATE" "$LARGE")
 
 if [ "$CHANGES" -gt "$LARGE_THRESHOLD" ]; then
-    SIZE_LABEL="$LARGE"
+    LABELS="$LARGE"
 elif [ "$CHANGES" -gt "$MODERATE_THRESHOLD" ]; then
-    SIZE_LABEL="$MODERATE"
+    LABELS="$MODERATE"
 elif [ "$CHANGES" -gt "$SMALL_THRESHOLD" ]; then
-    SIZE_LABEL="$SMALL"
+    LABELS="$SMALL"
 else
-    SIZE_LABEL="$MINIMAL"
+    LABELS="$MINIMAL"
 fi
 
-DELETE_LABELS=("${DELETE_LABELS[@]//${SIZE_LABEL}/}")
+DELETE_LABELS=("${DELETE_LABELS[@]//${LABELS}/}")
 
 # API for adding labels on the Pull Request 
 API_URL="https://api.github.com/repos/$REPOSITORY/issues/$PR_NUMBER/labels"
 
-echo "Adding label: ${SIZE_LABEL[@]}"
-for LABEL in "${SIZE_LABEL[@]}"; do
+# 'CI Manager' label
+CHANGED_PATH=$(git diff --name-only $PR_BASE_SHA $PR_HEAD_SHA)
+CI_PATH=(".ci" ".devcontainer" ".github/workflows" "tox.ini")
+
+found=false; for item in "${list[@]}"; do [[ "$CHANGED_PATH" == *"$CI_PATH"* || "$CI_PATH" == *"$CHANGED_PATH"* ]] && found=true; done; echo "$found"
+
+if $found; then
+    labels+=("CI Manager")
+fi
+
+echo "Adding label: ${LABELS[@]}"
+for LABEL in "${LABELS[@]}"; do
     curl -X POST \
         -H "$AUTH_HEADER" \
         -H "Accept: application/vnd.github+json" \
