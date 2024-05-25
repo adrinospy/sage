@@ -1,6 +1,6 @@
 # This action automatically labels Pull-Requests
 # based on files edited and no of lines changed.
-name: Auto Labeler/Checker
+name: Auto Labeler / Checker
 on:
   pull_request_target:
     types:
