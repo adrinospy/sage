@@ -55,9 +55,9 @@ for item in "${CI_PATH[@]}"; do
 done
 if $ci_label; then
     echo "Changes made in the CI Managed directory: $CHANGED_PATH"
-    LABELS+=($CI_MANAGER)
+    LABELS+=("$CI_MANAGER")
 else
-    DELETE_LABELS=("${DELETE_LABELS[@]//${CI_MANAGER}/}")
+    DELETE_LABELS+=("$CI_MANAGER")
 fi
 
 echo "Adding label: ${LABELS[@]}"
