@@ -47,13 +47,11 @@ API_URL="https://api.github.com/repos/$REPOSITORY/issues/$PR_NUMBER/labels"
 
 # 'CI Manager' label
 CHANGED_PATH=$(git diff --name-only $PR_BASE_SHA $PR_HEAD_SHA)
-echo "Path of changes made: $CHANGED_PATH"
-CI_PATH=(".ci" ".devcontainer" ".github/workflows" "tox.ini")
 ci_label="false"
-for item in "${CI_PATH[@]}"; do 
+for item in "${CI_PATH[@]}"; do
+    echo "Changes made in the CI managed directory: $CHANGED_PATH"
     [[ "$CHANGED_PATH" == "${item}"* ]] && ci_label="true" && break
 done
-
 if $ci_label; then
     LABELS+=("CI Manager")
 fi

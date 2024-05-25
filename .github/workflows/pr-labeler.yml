@@ -12,7 +12,7 @@ on:
       - edited
 jobs:
   label-changes:
-    if: vars.SMALL_THRESHOLD && vars.MODERATE_THRESHOLD && vars.LARGE_THRESHOLD && github.event.pull_request.draft == false
+    if: vars.SMALL_THRESHOLD && vars.MODERATE_THRESHOLD && vars.LARGE_THRESHOLD && vars.CI_PATH && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -37,3 +37,4 @@ jobs:
           SMALL_THRESHOLD: ${{ vars.SMALL_THRESHOLD }}
           MODERATE_THRESHOLD: ${{ vars.MODERATE_THRESHOLD }}
           LARGE_THRESHOLD: ${{ vars.LARGE_THRESHOLD }}
+          CI_PATH: ${{ vars.CI_PATH }}
