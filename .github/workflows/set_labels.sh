@@ -53,7 +53,7 @@ while IFS= read -r line || [[ -n $line ]]; do
     array+=("$line")
 done <<< "$CHANGED_PATH"
 CHANGED_PATH=$array
-
+printf '%s\n' "${CHANGED_PATH[@]}"
 CI_PATH=($CI_PATH)
 printf '%s\n' "${CI_PATH[@]}"
 for path in "${CHANGED_PATH[@]}"; do
