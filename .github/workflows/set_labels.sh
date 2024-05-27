@@ -6,7 +6,7 @@ echo "HEAD SHA: $PR_HEAD_SHA"
 echo "SMALL THRESHOLD: $SMALL_THRESHOLD"
 echo "MODERATE THERESHOLD: $MODERATE_THRESHOLD"
 echo "LARGE THRESHOLD: $LARGE_THRESHOLD"
-
+echo "CI Managed Files: $CI_PATH"
 # get all the changes made and changed files
 CHANGES=$(git diff --ignore-all-space $PR_BASE_SHA $PR_HEAD_SHA)
 
@@ -59,7 +59,8 @@ while IFS= read -r -d ' ' element; do
     array+=("$element")
 done <<< "$CI_PATH"
 CI_PATH=$array
-
+echo $CI_PATH
+printf '%s\n' "${CI_PATH[@]}"
 for path in "${CHANGED_PATH[@]}"; do
     ci_label="false"
     for item in "${CI_PATH[@]}"; do
