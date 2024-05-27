@@ -54,12 +54,7 @@ while IFS= read -r line || [[ -n $line ]]; do
 done <<< "$CHANGED_PATH"
 CHANGED_PATH=$array
 
-array=()
-while IFS= read -r -d ' ' element; do
-    array+=("$element")
-done <<< "$CI_PATH"
-CI_PATH=$array
-echo $CI_PATH
+CI_PATH=($CI_PATH)
 printf '%s\n' "${CI_PATH[@]}"
 for path in "${CHANGED_PATH[@]}"; do
     ci_label="false"
