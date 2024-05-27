@@ -49,7 +49,7 @@ API_URL="https://api.github.com/repos/$REPOSITORY/issues/$PR_NUMBER/labels"
 # 'CI Manager' label
 CHANGED_PATH=$(git diff --name-only $PR_BASE_SHA $PR_HEAD_SHA)
 echo $CHANGED_PATH
-IFS=',' read -r -a array <<< "$CHANGED_PATH"
+IFS=' ' read -r -a array <<< "$CHANGED_PATH"
 CHANGED_PATH=$array
 printf '%s\n' "${CHANGED_PATH[@]}"
 CI_PATH=($CI_PATH)
