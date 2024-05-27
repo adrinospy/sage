@@ -48,12 +48,12 @@ API_URL="https://api.github.com/repos/$REPOSITORY/issues/$PR_NUMBER/labels"
 
 # 'CI Manager' label
 CHANGED_PATH=$(git diff --name-only $PR_BASE_SHA $PR_HEAD_SHA)
-printf '%s\n' "${CHANGED_PATH[@]}"
 CI_PATH=($CI_PATH)
-printf '%s\n' "${CI_PATH[@]}"
 for path in "${CHANGED_PATH[@]}"; do
     ci_label="false"
     for item in "${CI_PATH[@]}"; do
+        echo $path
+        echo $item
         if [[ "${path}" == "${item}"* ]]; then 
             ci_label="true"
             break
