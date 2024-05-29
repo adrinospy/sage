@@ -17,15 +17,23 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - name: Checkout code
+      - name: Checkout pull request repo
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+      - name: Checkout the set_label_by_changes.sh file
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+          repository: amanmoon/sage
+          path: sage
       - name: Add labels based on size
         run: |
           git fetch origin $BASE_REF
-          chmod a+x .github/workflows/set_labels_by_changes.sh
+          ls set_label_file/
+          chmod a+x set_label_file/.github/workflows/set_labels_by_changes.sh
           .github/workflows/set_labels_by_changes.sh
         env:
           BASE_REF: ${{ github.base_ref }}
