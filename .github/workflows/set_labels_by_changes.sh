@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+BASE_BRANCH=$(git rev-parse --abbrev-ref origin/${{ github.event.pull_request.base.ref }})
+HEAD_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+PR_BASE_SHA=$(git merge-base origin/${{ github.event.pull_request.base.ref }} $HEAD_BRANCH)
+
 echo 'set_labels_by_changes.sh called with environment:'
 echo "BASE SHA: $PR_BASE_SHA" 
 echo "HEAD SHA: $PR_HEAD_SHA" 

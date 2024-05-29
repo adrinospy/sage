@@ -29,7 +29,6 @@ jobs:
           .github/workflows/set_labels_by_changes.sh
         env:
           BASE_SHA: ${{ github.base_ref }}
-          PR_BASE_SHA: ${{ github.event.pull_request.base.ref }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
