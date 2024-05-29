@@ -30,7 +30,7 @@ jobs:
       - name: Add labels based on size
         run: |
           git fetch origin $BASE_REF
-          ls set_label_file/
+          ls set_label_file/sage/
           chmod a+x set_label_file/sage/.github/workflows/set_labels_by_changes.sh
           set_label_file/sage/.github/workflows/set_labels_by_changes.sh
         env:
