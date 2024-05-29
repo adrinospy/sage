@@ -28,8 +28,7 @@ jobs:
           chmod a+x .github/workflows/set_labels_by_changes.sh
           .github/workflows/set_labels_by_changes.sh
         env:
-          BASE_SHA: ${{ github.base_ref }}
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}

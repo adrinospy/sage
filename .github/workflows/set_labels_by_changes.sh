@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-echo 'set_labels_by_changes.sh called with environment:'
+PR_BASE_SHA=$(git merge-base $BASE_SHA $PR_HEAD_SHA)
+echo $BASE_SHA
+echo $PR_HEAD_SHA
+echo $(git merge-base $BASE_SHA $PR_HEAD_SHA)
+echo "set_labels_by_changes.sh called with environment:"
 echo "BASE SHA: $PR_BASE_SHA" 
 echo "HEAD SHA: $PR_HEAD_SHA" 
 echo "SMALL THRESHOLD $SMALL_THRESHOLD"
