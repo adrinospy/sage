@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+$PR_MOUNT_DIR
 PR_BASE_SHA=$(git merge-base $BASE_SHA $PR_HEAD_SHA)
 
 echo "set_labels_by_changes.sh called with environment:"
