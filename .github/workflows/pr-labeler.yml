@@ -19,10 +19,7 @@ jobs:
     steps:
       - name: Checkout the main repo
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            .ci
-            .github
+
       - name: Checkout the pull request repo
         uses: actions/checkout@v4
         with:
