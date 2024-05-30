@@ -27,7 +27,6 @@ jobs:
         with:
           sparse-checkout: |
             .ci
-            .github
           repository: amanmoon/sage
           path: sage
       - name: Add labels based on size
